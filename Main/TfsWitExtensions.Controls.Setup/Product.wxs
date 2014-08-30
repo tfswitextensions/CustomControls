@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="TFS Work Item Extensions for Visual Studio 2013" Language="1033" Version="2.0.0.0" Manufacturer="TfsWitExtensions.codeplex.com" UpgradeCode="38613DA4-D01D-483D-AFB3-477B4095A721">
+    <Package Id="*" InstallerVersion="200" Compressed="yes" />
+    <Media Id="1" Cabinet="TfsWitExtensions.cab" EmbedCab="yes" />
+    <UIRef Id="WixUI_Minimal" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="Microsoft" Name="Microsoft">
+          <Directory Id="TeamFoundation" Name="Team Foundation">
+            <Directory Id="WorkItemTracking" Name="Work Item Tracking">
+              <Directory Id="CustomControls" Name="Custom Controls">
+                <Directory Id="INSTALLDIR" Name="12.0" >
+                  <Component Id="TfsWitExtensions.Controls.Windows" Guid="0F3AFBD2-997D-4154-9014-F62538B8B886">
+                    <File Id="WitCustomControls" Name="TfsWitExtensions.Controls.Windows.dll" Source="$(var.TfsWitExtensions.Controls.Windows.TargetDir)\TfsWitExtensions.Controls.Windows.dll" Vital="yes" />
+                    <File Id="MultiValueControl" Name="TfsWitExtensions.Controls.MultiValueControl.wicc" Source="$(var.TfsWitExtensions.Controls.Windows.TargetDir)\TfsWitExtensions.Controls.MultiValueControl.wicc" Vital="yes" />
+                    <File Id="TfsCheckbox" Name="TfsWitExtensions.Controls.CheckboxControl.wicc" Source="$(var.TfsWitExtensions.Controls.Windows.TargetDir)\TfsWitExtensions.Controls.CheckboxControl.wicc" Vital="yes" />
+                  </Component>
+                </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="Complete" Level="1">
+      <ComponentRef Id="TfsWitExtensions.Controls.Windows" />
+    </Feature>
+  </Product>
+</Wix>

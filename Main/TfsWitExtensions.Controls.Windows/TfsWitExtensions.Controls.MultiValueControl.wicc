@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CustomControl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Assembly>TfsWitExtensions.Controls.Windows.dll</Assembly>
+  <FullClassName>TfsWitExtensions.Controls.Windows.MultiValueControl</FullClassName>
+</CustomControl>

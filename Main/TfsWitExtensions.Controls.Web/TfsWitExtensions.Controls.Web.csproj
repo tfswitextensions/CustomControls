@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D1B6EB6-5A0F-4960-A99D-6EBA0194DD56}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TfsWitExtensions.Controls.Web</RootNamespace>
+    <AssemblyName>TfsWitExtensions.Controls.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.js" />
+    <Content Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.min.js">
+      <DependentUpon>TfsWitExtensions.Controls.Web.TfsCheckbox.js</DependentUpon>
+    </Content>
+    <Content Include="manifest.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.js" />
+    <Content Include="MultiValueControl\jquery.multiselect.css" />
+    <Content Include="MultiValueControl\MultiValueControl.css" />
+    <Content Include="MultiValueControl\MultiValueControl16x16.png" />
+    <Content Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.min.js">
+      <DependentUpon>TfsWitExtensions.Controls.Web.MultiValueControl.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.min.js.map">
+      <DependentUpon>TfsWitExtensions.Controls.Web.TfsCheckbox.js</DependentUpon>
+    </None>
+    <None Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.min.js.map">
+      <DependentUpon>TfsWitExtensions.Controls.Web.MultiValueControl.js</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+      copy "$(ProjectDir)MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.js" "$(ProjectDir)MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.debug.js"
+      copy "$(ProjectDir)CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.js" "$(ProjectDir)CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.debug.js"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <PropertyGroup>
+      <ZipFilePath>$(ProjectDir)TfsWitExtensions.Controls.Web.zip</ZipFilePath>
+    </PropertyGroup>
+    <ItemGroup>
+      <!-- Set the collection of files to Zip for control collection-->
+      <BaseFilesToZip Include="manifest.xml" />
+    </ItemGroup>
+    <ItemGroup>
+      <!-- Set the collection of files to Zip for the MultiValue control-->
+      <MultiValueFilesToZip Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.js" />
+      <MultiValueFilesToZip Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.debug.js" />
+      <MultiValueFilesToZip Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.min.js" />
+      <MultiValueFilesToZip Include="MultiValueControl\TfsWitExtensions.Controls.Web.MultiValueControl.min.js.map" />
+      <MultiValueFilesToZip Include="MultiValueControl\jquery.multiselect.css" />
+      <MultiValueFilesToZip Include="MultiValueControl\MultiValueControl.css" />
+      <MultiValueFilesToZip Include="MultiValueControl\MultiValueControl16x16.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <!-- Set the collection of files to Zip for the Checkbox control-->
+      <CheckboxFilesToZip Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.js" />
+      <CheckboxFilesToZip Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.debug.js" />
+      <CheckboxFilesToZip Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.min.js" />
+      <CheckboxFilesToZip Include="CheckboxControl\TfsWitExtensions.Controls.Web.TfsCheckbox.min.js.map" />
+    </ItemGroup>
+    <!-- Create a zip file based on the FilesToZip collection -->
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="Create" CompressFiles="@(BaseFilesToZip)" ZipFileName="$(ZipFilePath)" RemoveRoot="$(ProjectDir)" />
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="AddFiles" CompressFiles="@(MultiValueFilesToZip)" ZipFileName="$(ZipFilePath)" RemoveRoot="$(ProjectDir)MultiValueControl" />
+    <MSBuild.ExtensionPack.Compression.Zip TaskAction="AddFiles" CompressFiles="@(CheckboxFilesToZip)" ZipFileName="$(ZipFilePath)" RemoveRoot="$(ProjectDir)CheckboxControl" />
+  </Target>
+</Project>

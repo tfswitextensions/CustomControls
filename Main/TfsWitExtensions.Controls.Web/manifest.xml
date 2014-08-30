@@ -1,0 +1,8 @@
+﻿<WebAccess version="12.0">
+  <plugin name="TFS Work Item Extensions" vendor="TfsWitExtensions.codeplex.com" moreinfo="https://tfswitextensions.codeplex.com/" version="2.0.0.0" >
+    <modules>
+      <module namespace="TfsWitExtensions.Controls.Web.TfsCheckbox" kind="TFS.WorkItem.CustomControl"/>
+      <module namespace="TfsWitExtensions.Controls.Web.MultiValueControl" kind="TFS.WorkItem.CustomControl"/>
+    </modules>
+  </plugin>
+</WebAccess>
