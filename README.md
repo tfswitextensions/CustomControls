@@ -1,4 +1,4 @@
-This project aims to complement the built-in TFS controls with commonly requested controls.
+This project aims to complement the built-in TFS work item controls with commonly requested controls.
 
 This project has been transitioned to GitHub from its orignal home on Codeplex https://witcustomcontrols.codeplex.com/. 
 
